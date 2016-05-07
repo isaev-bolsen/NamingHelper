@@ -21,7 +21,7 @@ namespace ClassGenerator.Host
 
         public static string ConvertToValidCSName(string text)
         {
-            return StartWithUpperCase(MoveDigitsFromHeadToTail(ReplaceChars(text)));
+            return StartWithUpperCase(MoveDigitsFromHeadToTail(ReplaceChars(text.Split('.').Last())));
         }
 
         private static Regex ReplaceTo_ = new Regex("[-/]+", RegexOptions.Compiled); //two symbols '-' and '/'
@@ -29,7 +29,7 @@ namespace ClassGenerator.Host
 
         private static string ReplaceChars(string text)
         {
-            return ReplaceToEmpty.Replace(ReplaceTo_.Replace(text.Split('.').Last(), "_").Replace("=", "Equal"), string.Empty);
+            return ReplaceToEmpty.Replace(ReplaceTo_.Replace(text, "_").Replace("=", "Equal"), string.Empty);
         }
     }
 }
