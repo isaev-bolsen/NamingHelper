@@ -5,12 +5,15 @@ namespace ClassGenerator.Host
 {
     public static class Helper
     {
+        private static Regex ReplaceTo_ = new Regex("[-/]+", RegexOptions.Compiled); //two symbols '-' and '/'
+        private static Regex ReplaceToEmpty = new Regex("\\W+", RegexOptions.Compiled); //Symbols not for Name
+        private static Regex LeadingNumbers = new Regex("\\A[0-9]+", RegexOptions.Compiled); //Leading Numbers
+
         private static string MoveDigitsFromHeadToTail(string text)
         {
-            var numbPrefix = text.TakeWhile(c => char.IsDigit(c));
-            int DigitsCount = numbPrefix.Count();
-            if (DigitsCount == 0) return text;
-            else return text.Substring(DigitsCount) + "_" + new string(numbPrefix.ToArray());
+            var Match = LeadingNumbers.Match(text);
+            if (Match.Length == 0) return text;
+            else return text.Substring(Match.Length) + "_" + Match.Value;
         }
 
         internal static string StartWithUpperCase(string text)
@@ -24,8 +27,7 @@ namespace ClassGenerator.Host
             return StartWithUpperCase(MoveDigitsFromHeadToTail(ReplaceChars(text.Split('.').Last())));
         }
 
-        private static Regex ReplaceTo_ = new Regex("[-/]+", RegexOptions.Compiled); //two symbols '-' and '/'
-        private static Regex ReplaceToEmpty = new Regex("\\W+", RegexOptions.Compiled); //Symbols not for Name
+
 
         private static string ReplaceChars(string text)
         {
