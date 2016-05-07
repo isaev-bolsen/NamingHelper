@@ -5,9 +5,9 @@ namespace ClassGenerator.Host
 {
     public static class Helper
     {
-        private static Regex ReplaceTo_ = new Regex("[-/]+", RegexOptions.Compiled); //two symbols '-' and '/'
-        private static Regex ReplaceToEmpty = new Regex("\\W+", RegexOptions.Compiled); //Symbols not for Name
-        private static Regex LeadingNumbers = new Regex("\\A[0-9]+", RegexOptions.Compiled); //Leading Numbers
+        private readonly static Regex ReplaceTo_ = new Regex("[-/]+", RegexOptions.Compiled); //two symbols '-' and '/'
+        private readonly static Regex ReplaceToEmpty = new Regex("\\W+", RegexOptions.Compiled); //Symbols not for Name
+        private readonly static Regex LeadingNumbers = new Regex("\\A[0-9]+", RegexOptions.Compiled); //Leading Numbers
 
         private static string ReplaceChars(string text)
         {
