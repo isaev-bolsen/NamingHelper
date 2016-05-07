@@ -27,8 +27,6 @@ namespace ClassGenerator.Host
             return StartWithUpperCase(MoveDigitsFromHeadToTail(ReplaceChars(text.Split('.').Last())));
         }
 
-
-
         private static string ReplaceChars(string text)
         {
             return ReplaceToEmpty.Replace(ReplaceTo_.Replace(text, "_").Replace("=", "Equal"), string.Empty);
